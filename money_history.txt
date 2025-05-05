@@ -1,0 +1,12 @@
+2025-05-05,359286,deposit,money=350000,blance=350000,who edet-991258,
+2025-05-05,639949,deposit,money=340000,blance=340000,who edet-991258,
+2025-05-05,206434,deposit,money=34000000,blance=34000000,who edet-991258,
+2025-05-05,359286,withrow,money=3000,blance=347000,who edet-991258,
+2025-05-05,359286,withrow,money=3000,blance=344000,who edet-991258,
+2025-05-05,359286,withrow,money=3400,blance=340600,who edet-kajaa,
+2025-05-05,359286,withrow,money=45000,blance=295600,who edet-kajaa,
+2025-05-05,359286,deposit,money=56000,blance=351600,who edet-kajaa,
+2025-05-05,359286,withrow,money=3000,blance=348600,who edet-kajaa,
+2025-05-05,359286,withrow,money=3000,blance=345600,who edet-kajaa,
+
+2025-05-05,929660,deposit,money=560000,blance=560000,who edet-991258,
