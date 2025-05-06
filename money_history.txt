@@ -8,5 +8,6 @@
 2025-05-05,359286,deposit,money=56000,blance=351600,who edet-kajaa,
 2025-05-05,359286,withrow,money=3000,blance=348600,who edet-kajaa,
 2025-05-05,359286,withrow,money=3000,blance=345600,who edet-kajaa,
-
 2025-05-05,929660,deposit,money=560000,blance=560000,who edet-991258,
+2025-05-06,639949,withrow,money=1234,blance=1766,who edet-sutha,
+2025-05-06,929660,deposit,money=1234,blance=1234,who edet-sutha,

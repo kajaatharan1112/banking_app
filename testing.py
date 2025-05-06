@@ -1,0 +1,1 @@
+print("\033[1mWell come UniCom Bank [UCB]\033[0m")
