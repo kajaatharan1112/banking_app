@@ -1,8 +1,8 @@
- # -----------funcations--------:98s-0
+ # -----------funcations--------:
 import datetime #-import date and time-
 def date_time():
     return datetime.date.today()
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def admin_acount_create():
     while(True):
         try:
@@ -38,9 +38,11 @@ def admin_acount_create():
         fill.write(f"{admin_age},")
         fill.write(f"{admin_nic},\n")
         fill.close()
-        print(f"{admin_name}'s id={admin_id_number}")
+        print()
+        print(f"                          {admin_name}'s id={admin_id_number}")
+        print()
         break
-
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def paswod_maker():
     while True:
         try:
@@ -61,7 +63,7 @@ def paswod_maker():
             print("invalide pasword tryagain")
             
             
-
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def pasword_username_chack(people,username="admin",password="1112",acount_num="1112"):
     blance=0
     while(acount_num=="1112"):
@@ -103,7 +105,7 @@ def pasword_username_chack(people,username="admin",password="1112",acount_num="1
             pass
         
         return blance
-           
+ #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------          
 def create_a_bank_acount():
     global admin_id
     while(True):
@@ -134,7 +136,13 @@ def create_a_bank_acount():
         except TypeError:
             print("intrthe sutabil index")
             continue
-        print(name,acout_number,nic_number,age)
+        
+        print("\033[34m--Acount Details---\033[0m")
+        print("name                  =",name)
+        print("acount-number         =",acout_number)
+        print("nic-number            =",nic_number)
+        print("age                   =",age)
+        print()
         password=paswod_maker()
         fill.write(f"{name},")#---index{0}--user-data
         fill.write(f"{acout_number},")#-1
@@ -158,7 +166,7 @@ def create_a_bank_acount():
         history.write(f"who edet-{admin_id},\n")
         history.close()
         break
-
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def history_maker(people,acount_no,money,funcation,data,blance):
     fill1=open("money_history.txt","a")
     date=date_time()
@@ -180,7 +188,7 @@ def history_maker(people,acount_no,money,funcation,data,blance):
     fill.write(f"{blance},\n")
     fill.close()            
    
-    
+ #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------   
 def blance_edeter(people,acount_no,money,funcation):
     fill=open("blance.txt","r")
     data=fill.readlines()
@@ -192,8 +200,6 @@ def blance_edeter(people,acount_no,money,funcation):
             m=i.split(",")
             if m[1]==acount_no:
                 blance=int(m[2])
-                
-                print(m)#........testing
                 data.remove(i)
             else:
                 pass
@@ -209,7 +215,7 @@ def blance_edeter(people,acount_no,money,funcation):
         new_blance=blance+money
         history_maker(people,acount_no,money,funcation,data,new_blance)
         return new_blance 
-           
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------           
 def chack_history(date,acount_number):
     fill=open("money_history.txt","r")
     data=fill.readlines()
@@ -238,7 +244,7 @@ def chack_history(date,acount_number):
     else:
         num=0
         return history
-    
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
 def detail_changer(people,username,password,):
     if people=="admin":
@@ -262,32 +268,62 @@ def detail_changer(people,username,password,):
     name=input("enter your new user name=")
     m[0]=name
     m[2]=cod
-    fill=open("user_data.txt","w")
-    for i in data:
-        fill.write(f"{i},\n")
-    fill.close()
     
-    fill=open("user_data.txt","a")
-    m.pop()
-    for i in m:
-        fill.write(f"{i},")
-    fill.write(f"\n")
-    fill.close()
-    
-    
-    
+    if people=="user":
+        fill=open("user_data.txt","w")
+        for i in data:
+            fill.write(f"{i},\n")
+        fill.close()
+    else:
+        fill=open("admin_data.txt","w")
+        for i in data:
+            fill.write(f"{i},\n")
+        fill.close()
         
     
+    if people=="user":
+        fill=open("user_data.txt","a")
+        m.pop()
+        for i in m:
+            fill.write(f"{i},")
+        fill.write(f"\n")
+        fill.close()
+    else:
+        fill=open("admin_data.txt","a")
+        m.pop()
+        for i in m:
+            fill.write(f"{i},")
+        fill.write(f"\n")
+        fill.close()
+#--------------------------------------------------------------------------------------------------------------------------------------------   
+def acount_number_user_name(username,ac_number):
+    k=False
+    fill=open("user_data.txt","r")
+    data=fill.readlines()
+    fill.close()
+    for i in data:
+        m=i.split(",")
+        if m[0]==username:
+            if m[1]==ac_number:
+                k=True
+                return k
+            else:
+                return k
+        else:
+            pass
+
+
             
 
            
-# ------------user inter face-#########################################################################################################################################-
+# ###################################################################################user inter face-#########################################################################################################################################-
 
 while (True):
     print("\033[33m                   Well come UniCom Bank [UCB]\033[0m")
     print("\033[1m                   ---------------------------\033[0m")
     print()
     print("\033[1m Enter Your User Key Word \033[0m")
+    print()
     print("custmor---[1]")
     print("admin-----[2]")
     print()
@@ -331,7 +367,8 @@ while (True):
                 name=input("Enter tha acount holder name=")
                 acount_number=input("Enter tha acount number=")
                 acount_password=input("Enter tha acount holder password=")
-                
+                    
+                     
                 blance=pasword_username_chack(name,name,name,acount_number)
                 if blance==0:
                     print("\033[31m---ERROR____your acount number is RONG-------Try  Again-- \033[0m")
@@ -345,7 +382,14 @@ while (True):
                 else:
                     print("\033[31m---ERROR____Invalide User Name Password--[Please Try again]------ \033[0m")
                     continue
-                    
+                
+                ll=acount_number_user_name(name,acount_number)
+                if ll==True:
+                    pass
+                else:
+                    print("\033[31m---ERROR____your name and acount number is not match---- \033[0m")
+                    continue
+                
             #banking actvity-------------------------------------------------
             if funcation_key==1:
                     detail_changer("user",name,acount_password)
@@ -393,11 +437,12 @@ while (True):
                         print("\033[31m---ERROR____Enter Money Value Only---- [UCB]\033[0m")
                         continue
                     if money<blance:
+                        print("--------------")
                         new_blance=blance_edeter(name,acount_number,money,"withrow")
                         new_blance1=blance_edeter(name,acount_number2,money,"deposit")
                         print("user new blance=",new_blance)
                     else:
-                        ("\033[31m---ERROR____Invalid Transfer ----Please Try Again--- [UCB]\033[0m")
+                        print("\033[31m---ERROR____Invalid Transfer ----Please Try Again--- [UCB]\033[0m")
                         continue
                 else:
                     print("\033[31m---ERROR____Acount Number Confomation is rong----------Please Try Again---- \033[0m")
@@ -426,7 +471,7 @@ while (True):
                 print()
                 if ee==1:
                     date=(input("enter tha date(year-month-date)="))
-                    dd=chack_history(date,acount_number)
+                    history=chack_history(date,acount_number)
                     for i in history:
                         print(i)
                 elif ee==2:
@@ -440,7 +485,7 @@ while (True):
             
         
         
-    elif user_key == 2:
+    elif user_key==2:
         print("\033[33m---WELL COME ADMIN---\033[0m")
         
         
@@ -478,7 +523,8 @@ while (True):
                     if ii==1:
                         while True:
                             
-                            print("Acount holder actvity")
+                            print("                                    Acount holder actvity")
+                            print
                             print("Create an acount-------[1]")
                             print("Deposit_money----------[2]")
                             print("Withrow money----------[3]")
@@ -490,99 +536,108 @@ while (True):
                             print()
                             
                             try:    
-                                funcation_key=int(input("enter the funcation key word="))
+                                funcation_key=int(input("Enter the Funcation key Word====="))
+                                print()
                             except ValueError:
-                                print("enteer key words only")
+                                print("\033[31m--ERROR---------Enter The Sutable Key Word Only---\033[0m")
                                 continue
                             
                                   
                             ###
                             if funcation_key==1:
                                 create_a_bank_acount()
-                                print("acount created suckssfully")
+                                print("\033[33m-----------Your Acount Created Succesfully------------\033[0m")
                             elif funcation_key==0:
-                                    print("thank you")
+                                    print("\033[33m-----Thank You---\033[0m")
                                     break
                             elif funcation_key<0 or funcation_key>7:
-                                print("invalide key word----try again")
+                                print("\033[31m--ERROR---------Enter The Sutable Key Word Only-------Please Try Again-\033[0m")
                                 continue
                             ###
                             
                             else:
-                                name=input("enter tha acount holder name=")
-                                acount_number=input("enter tha acount number")
-                                acount_password=input("enter tha acount holder password")
+                                name=input("-Enter tha acount Holder Name====================")
+                                acount_number=input("-Enter The Acount Number================")
+                                acount_password=input("-Enter The Acount Password============")
                                 
                                 blance=pasword_username_chack(name,name,name,acount_number)
                                 if blance==0:
-                                    print("invalid acount number")
+                                    print("\033[31m--ERROR---------Invalid Acount Number----Please Try Again---\033[0m")
                                     continue
                                 acount=pasword_username_chack("user",name,acount_password)
                                 if acount!=None:
-                                    print("acount founted")
+                                    print("\033[34m------Your Acount Founted---\033[0m")
                                 else:
-                                    print("invalide user name pass word")
-                                    print("try again")
+                                    print("\033[31m------Invalid user Name password------Please Try Again-------\033[0m")
+                                    continue
+                                
+                                ll=acount_number_user_name(name,acount_number)
+                                if ll==True:
+                                    pass
+                                else:
+                                    print("\033[31m---ERROR____your name and acount number is not match---- \033[0m")
                                     continue
                                 
                             #banking actvity-----------------------------------------------------------------------------------------------------------------------------------------  
-                            print( "enter the acount holder details")
+                            print("\033[34m-----Enter The Acount Holder Details---\033[0m")
                             
                             if funcation_key==3:
                                 try:
-                                    money=int(input("inter your withrowl amount="))
+                                    money=int(input("Enter your withrowl amount="))
                                 except ValueError:
-                                        print("enter moni value only-in numbers")
+                                        print("\033[34m--ERROR---------Enter The Money value only---\033[0m")
                                         continue 
                                 if money<blance:
                                     new_blance=blance_edeter(admin_id,acount_number,money,"withrow")
-                                    print("your neu blance is=",new_blance)
+                                    print("\033[34m----your curant Acount Blance---\033[0m")
+                                    print(new_blance)
                                 else:
-                                    print("invalid withrowl amount")
+                                    print("\033[31m--ERROR---------Invalid with rowl amount ---- Please Try Again -----\033[0m")
                                     continue
 
                             elif funcation_key==2:
                                 try:
-                                    money=int(input("enter your deposit amount="))
+                                    money=int(input("Enter your deposit amount="))
                                 except ValueError:
-                                        print("enter moni value only-in numbers")
+                                        print("\033[34m--ERROR---------Enter The Money value only---\033[0m")
                                         continue
                                 new_blance=blance_edeter(admin_id,acount_number,money,"deposit")
-                                print("your new blance=",new_blance)
+                                print("\033[34m----your curant Acount Blance---\033[0m")
+                                print(new_blance)
                             
                             elif funcation_key==4:
-                                acount_number2=int(input("enter tha transfer acount number="))
-                                acount_number3=int(input("conform yuor transfre acount number="))
+                                acount_number2=int(input("Enter tha transfer acount number      ="))
+                                acount_number3=int(input("Conform yuor transfre acount number   ="))
                                 blance1=pasword_username_chack(name,name,name,acount_number2)
                                 if blance1==0:
-                                    print("invalid acount number")
+                                    print("\033[31m----invalid acount number ------- TRY AGAIN----\033[0m")
                                     continue
                                 else:
                                     pass
                                 if acount_number2==acount_number3:
                                     try:
-                                        money=int(input("inter your withrowl amount="))
+                                        money=int(input("Enter your Transfer amount="))
                                     except ValueError:
-                                        print("enter moni value only-in numbers")
+                                        print("\033[31m--ERROR---------Enter The Money value only---\033[0m")
                                         continue
                                     if money<blance:
                                         new_blance=blance_edeter(admin_id,acount_number,money,"withrow")
                                         new_blance1=blance_edeter(admin_id,acount_number2,money,"deposit")
                                         print("user new blance=",new_blance)
                                     else:
-                                        print("invalide acount blanse")
+                                        print("\033[31m--ERROR---------Invalid Acount blance------Your Tranfre faild----Try again---\033[0m")
                                         continue
                                 else:
-                                    print("transfer acount confamation is rong===========================")
+                                    print("==========================transfer acount confamation is rong===========================")
                                     continue
                             
                             elif funcation_key==5:
                                 i=pasword_username_chack("user",name,acount_password)
                                 print()
-                                print(f"acoun holder name={i[0]}")
-                                print(f"acoun number={i[1]}")
-                                print(f"age={i[2]}")
-                                print(f"nic number={i[3]}")
+                                print(f"acoun holder name===={i[0]}")
+                                print(f"acoun number========={i[1]}")
+                                print(f"age=================={i[2]}")
+                                print(f"nic number==========={i[3]}")
                                 print()
 
                             elif funcation_key==6:
@@ -590,12 +645,14 @@ while (True):
                                 print(blance)
                             
                             elif funcation_key==7:
-                                print("enter the sutabil key word")
-                                print("date user history=1")
-                                print("all user history=2")
-                                ee=int(input("enter tha key word="))
+                                print("\033[34m-------------KEY WORDS---\033[0m")
+                                print
+                                print("Date user history=====[1]")
+                                print("ALL user history======[2]")
+                                print
+                                ee=int(input("Enter tha key word    ="))
                                 if ee==1:
-                                    date=(input("enter tha date(year-month-date)="))
+                                    date=(input("Enter tha date=====(year-month-date)  ="))
                                     dd=chack_history(date,acount_number)
                                     for i in history:
                                         print(i)
@@ -608,27 +665,30 @@ while (True):
                                                 
                     elif ii==2:
                         while(True):
-                            print("well come to staf actvity")
-                            print("ACTVITY MANU")
-                            print("all-acount holder-blance list=1")
-                            print("bank transtation history=2")
-                            print("all custmor details list=3")
-                            print("change admin password,username=4")
-                            print("chack admin detail=5")
-                            print("all admin details=6")#fnish this
-                            print("your details=7")
-                            print("create a admin=8")
-                            print("go to previous manu=0")
+                            print("\033[34m                              BANKING ACTVITY   \033[0m")
+                            print()
+                            print("                          ACTVITY MANU")
+                            print()
+                            print("ALL-acount holder-blance list----------[1]")
+                            print("bank transtation history---------------[2]")
+                            print("all custmor details list---------------[3]")
+                            print("change admin password,username---------[4]")
+                            print("chack admin detail---------------------[5]")
+                            print("all admin details----------------------[6]")
+                            print("your details---------------------------[7]")
+                            print("create a admin-------------------------[8]")
+                            print("go to previous manu--------------------[0]")
+                            print()
                             try:
-                                key=int(input("enter than menu key word="))
+                                key=int(input("Enter than menu key word     ="))
                             except ValueError:
-                                print("input key words only=")
+                                print("\033[31m--ERROR---------Enter The key word in number only --------\033[0m")
                                 continue
                             if key==0:
-                                print("go to previous manu")
+                                print("===going to previous manu===")
                                 break
                             elif key>8 and key<0:
-                                print("invalid key word please try again")
+                                print("\033[31m--ERROR---------Invalid key Word ------Please Try Again-----\033[0m")
                                 continue
                             
                             elif key==1:
@@ -662,7 +722,8 @@ while (True):
                                     
                             elif key==4:
                                 detail_changer("admin",admin_username,admin_password)
-                                print("your new password user  name changed")
+                                print()
+                                print("\033[34m--ERROR---------pass word user name changed-----\033[0m")
                                 
                             elif key==5:
                                 i=pasword_username_chack("admin",admin_username,admin_password)
@@ -712,13 +773,13 @@ while (True):
                                 admin_acount_create()
                                 print("new admin created")            
                     elif ii==3:
-                        print("go to previus menu")
+                        print("\033[33m--ERROR---------going main manu-----\033[0m")
                         break
             else:
-                print("invalid admin id pass word")
+                print("\033[31m--ERROR---------Invalid pass Word ------Please Try Again-----\033[0m")
                 continue
     else:
-        print("Invald Key Word try again")
+        print("\033[31m--ERROR---------Invalid key Word ------Please Try Again-----\033[0m")
 
 
 
